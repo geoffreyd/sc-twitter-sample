@@ -32,7 +32,7 @@ Twitter.TwitterDataSource = SC.DataSource.extend(
       
       if (!SC.empty(search)) {
         url += "?"+Twitter.TWITTER_QUERY.fmt(search) ;
-      } else {
+      } else if(location.coords) {
         url += "?"+Twitter.TWITTER_GEO.fmt(
           location.coords.latitude,
           location.coords.longitude,

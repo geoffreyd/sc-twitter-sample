@@ -33,8 +33,10 @@ Twitter.main = function main() {
     Twitter.store.find(Twitter.TWITTER_QUERY) ;
   },
   function() {
-    console.log("Can't find Location") ;
-    Twitter.set('location', {error: "Can't find Location"}) ;
+    console.log("Using Test Location") ;
+    // Twitter.set('location', {coords: { latitude: -27.5163535, longitude: 153.0298424 }}) ;
+    var tweets = Twitter.store.find(Twitter.TWITTER_QUERY) ;
+    Twitter.tweetsController.set('content', tweets) ;
   }) ;
 
 } ;
