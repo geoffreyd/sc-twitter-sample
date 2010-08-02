@@ -30,7 +30,8 @@ Twitter.main = function main() {
   navigator.geolocation.getCurrentPosition(function(position) {
     console.log('Found locations, call query') ;
     Twitter.set('location', position) ;
-    Twitter.store.find(Twitter.TWITTER_QUERY) ;
+    var tweets = Twitter.store.find(Twitter.TWITTER_QUERY) ;
+    Twitter.tweetsController.set('content', tweets) ;
   },
   function() {
     console.log("Using Test Location") ;
