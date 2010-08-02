@@ -11,12 +11,24 @@ Twitter.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
-    childViews: 'tweetScroller'.w(),
+    childViews: 'toolbar tweetScroller'.w(),
+    
+    toolbar: SC.ToolbarView.design({
+      anchorLocation: SC.ANCHOR_TOP,
+      
+      childViews: 'filter'.w(),
+      
+      filter: SC.TextFieldView.design({
+        layout: {centerY: 0, centerX: 0, height: 24, width: 150},
+        valueBinding: 'Twitter.tweetsController.filterBy',
+        hint: 'Filter These Results'
+      })
+    }),
     
     tweetScroller: SC.ScrollView.design({
-      layout: { top: 0, right: 0, bottom: 0, left: 0 },
+      layout: { top: 30, right: 0, bottom: 0, left: 0 },
       contentView: SC.ListView.design({
-        contentBinding: 'Twitter.tweetsController.arrangedObjects',
+        contentBinding: 'Twitter.tweetsController.filtered',
         rowHeight: 80,
         exampleView: Twitter.TweetView
       })
