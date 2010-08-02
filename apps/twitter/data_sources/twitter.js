@@ -14,7 +14,7 @@ Twitter.TWITTER_SEARCH_URL = "/search.json" ;
 Twitter.TWITTER_QUERY = "q=%@" ;
 Twitter.TWITTER_GEO = "geocode=%@,%@,%@" ;
 
-Twitter.TWITTER_QUERY = SC.Query.remote(Twitter.Tweet) ;
+Twitter.TWITTER_QUERY = SC.Query.local(Twitter.Tweet) ;
 
 Twitter.TwitterDataSource = SC.DataSource.extend(
 /** @scope Twitter.Twitter.prototype */ {
@@ -57,8 +57,8 @@ Twitter.TwitterDataSource = SC.DataSource.extend(
         results, status ;
     if (SC.ok(response) && SC.ok(results = response.results)) {
       status = request.get('status') ;
-      this._refresh_url = response.refresh_url ;
-      this._next_page   = response.next_page ;
+      this._refresh_url = response.refreshUrl ;
+      this._next_page   = response.nextPage ;
       store.loadRecords(Twitter.Tweet, results) ;
       store.dataSourceDidFetchQuery(query) ;
     } else {
@@ -66,8 +66,8 @@ Twitter.TwitterDataSource = SC.DataSource.extend(
     }
   },
   
-  _refresh_url: null,
-  _next_page: null,
+  _refreshUrl: null,
+  _nextPage: null,
 
   // ..........................................................
   // RECORD SUPPORT

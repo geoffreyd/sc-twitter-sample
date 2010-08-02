@@ -11,13 +11,15 @@ Twitter.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
-    childViews: 'labelView'.w(),
+    childViews: 'tweetScroller'.w(),
     
-    labelView: SC.LabelView.design({
-      layout: { centerX: 0, centerY: 0, width: 200, height: 18 },
-      textAlign: SC.ALIGN_CENTER,
-      tagName: "h1", 
-      value: "Welcome to SproutCore!"
+    tweetScroller: SC.ScrollView.design({
+      layout: { top: 0, right: 0, bottom: 0, left: 0 },
+      contentView: SC.ListView.design({
+        contentBinding: 'Twitter.tweetsController.arrangedObjects',
+        rowHeight: 80,
+        exampleView: Twitter.TweetView
+      })
     })
   })
 
